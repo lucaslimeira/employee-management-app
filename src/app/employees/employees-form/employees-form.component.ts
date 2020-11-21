@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Employee } from '../employee';
 import { EmployeesService } from '../../employees.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Address } from '../address';
 
 @Component({
   selector: 'app-employees-form',
@@ -21,6 +22,7 @@ export class EmployeesFormComponent implements OnInit {
     private activatedRoute : ActivatedRoute
   ) { 
      this.employee = new Employee();
+     this.employee.address = new Address();
   }
 
   ngOnInit(): void {
