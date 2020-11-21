@@ -1,0 +1,84 @@
+<h1 class="mt-4">Employees</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">Employee Management - Search</li>
+</ol>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-success" role="alert" *ngIf="successMessage">
+                {{ successMessage }}
+            </div>
+            <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+                {{ errorMessage }}
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">
+            <button class="btn btn-warning" (click)="newEmployee()">
+                <i class="fa fa-plus"></i> New
+            </button>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-2">
+            <table class="table table-condensed table-hover">
+                <thead>
+                    <th>ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Nick Name</th>
+                    <th>CPF</th>
+                    <th>Date of Birth</th>
+                    <th>Active</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let employee of employees">
+                        <td>{{ employee.id }}</td>
+                        <td>{{ employee.firstName }}</td>
+                        <td>{{ employee.lastName }}</td>
+                        <td>{{ employee.nickName }}</td>
+                        <td>{{ employee.cpf }}</td>
+                        <td>{{ employee.dateOfBirth }}</td>
+                        <td>{{ employee.active }}</td>
+                        <td>{{ employee.startDate }}</td>
+                        <td>{{ employee.endDate }}</td>
+                        <td>
+                            <button class="btn btn-primary" routerLink="/employees-form/{{ employee.id }} ">
+                                <i class="fa fa-pen-square"></i>
+                            </button>
+                        </td>
+                        <td>
+                            <button class="btn btn-danger" (click)="onPrepareDeletion(employee)"
+                                    data-toggle="modal" 
+                                    data-target="#deleteModal">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="deleteModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    Confirm
+                </div>
+                <div class="modal-body" *ngIf="employeeToDelete">
+                    Are you sure you want to delete {{ employeeToDelete.firstName }}?
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success" (click)="deleteEmployee()" data-dismiss="modal">Delete</button>
+                    <button class="btn btn-default" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
