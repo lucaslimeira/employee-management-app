@@ -1,6 +1,6 @@
-<h1 class="mt-4">Employees</h1>
+<h1 class="mt-4">Administração de Funcionários</h1>
 <ol class="breadcrumb mb-4">
-    <li class="breadcrumb-item active">Employee Management - Search</li>
+    <li class="breadcrumb-item active">Pesquisa de Funcionários</li>
 </ol>
 <div class="container">
     <div class="row">
@@ -17,36 +17,32 @@
     <div class="row">
         <div class="col-md-2">
             <button class="btn btn-warning" (click)="newEmployee()">
-                <i class="fa fa-plus"></i> New
+                <i class="fa fa-plus"></i> Criar
             </button>
         </div>
     </div>
     <br />
     <div class="row border">
-        <div class="col-md-2">
-            <table class="table table-condensed table-hover">
+        <div>
+            <table class="table table-bordered table-resizable">
                 <thead>
                     <th>ID</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Nick Name</th>
+                    <th>Nome</th>
                     <th>CPF</th>
-                    <th>Date of Birth</th>
-                    <th>Active</th>
-                    <th>Start Date</th>
-                    <th>End Date</th>
+                    <th>Data Nasc.</th>
+                    <th>Ativo</th>
+                    <th>Data Início</th>
+                    <th>Email</th>
                 </thead>
                 <tbody>
                     <tr *ngFor="let employee of employees">
                         <td>{{ employee.id }}</td>
-                        <td>{{ employee.firstName }}</td>
-                        <td>{{ employee.lastName }}</td>
-                        <td>{{ employee.nickName }}</td>
+                        <td>{{ employee.name }}</td>
                         <td>{{ employee.cpf }}</td>
                         <td>{{ employee.dateOfBirth }}</td>
-                        <td>{{ employee.active }}</td>
+                        <td> <span class="status text-success">&bull;</span> {{ employee.active }}</td>
                         <td>{{ employee.startDate }}</td>
-                        <td>{{ employee.endDate }}</td>
+                        <td>{{ employee.email }}</td>
                         <td>
                             <button class="btn btn-primary" routerLink="/employees-form/{{ employee.id }} ">
                                 <i class="fa fa-pen-square"></i>
@@ -72,7 +68,7 @@
                     Confirm
                 </div>
                 <div class="modal-body" *ngIf="employeeToDelete">
-                    Are you sure you want to delete {{ employeeToDelete.firstName }}?
+                    Are you sure you want to delete {{ employeeToDelete.name }}?
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-success" (click)="deleteEmployee()" data-dismiss="modal">Delete</button>

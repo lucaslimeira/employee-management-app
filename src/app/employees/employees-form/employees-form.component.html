@@ -1,6 +1,6 @@
-<h1 class="mt-4">Employees</h1>
+<h1 class="mt-4">Funcionários</h1>
 <ol class="breadcrumb mb-4">
-    <li class="breadcrumb-item active">{{ employee.id ? 'Employee - Edit' : 'Employee - New' }}</li>
+    <li class="breadcrumb-item active">{{ employee.id ? 'Funcionário - Alterar' : 'Funcionário - Novo' }}</li>
 </ol>
 <div class="container border">
     <form #employeeForm="ngForm" (ngSubmit)="onSubmit()">
@@ -8,14 +8,18 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="alert alert-success" role="alert" *ngIf="success == true">
-                    Employee saved/updated successfully!
+                    Funcionários criado/alterado com sucesso!
                 </div>
                 <div class="alert alert-danger" role="alert" *ngFor="let error of errors">
                     {{ error }}
                 </div>
             </div>
         </div>
-
+        <div class="row">
+            <div class="col-md-3">
+                <h3>Dados Cadastrais</h3>
+            </div>            
+        </div> 
         <div class="row" *ngIf="employee.id">
             <div class="col-md-6">
                 <div class="form-group">
@@ -27,7 +31,7 @@
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label>Created:</label>
+                    <label>Data Criação:</label>
                     <input type="text" class="form-control" disabled="true" 
                            [ngModel]="employee.created" 
                            name="created"/>
@@ -37,37 +41,21 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label>First Name:</label>
+                    <label>Nome:</label>
                     <input type="text" class="form-control" 
-                           [(ngModel)]="employee.firstName"
-                           name="firstName"/>
+                           [(ngModel)]="employee.name"
+                           name="name"/>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-3">
                 <div class="form-group">
-                    <label>Last Name:</label>
-                    <input type="text" class="form-control" 
-                           [(ngModel)]="employee.lastName"
-                           name="lastName"/>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label>Nick Name:</label>
-                    <input type="text" class="form-control" 
-                           [(ngModel)]="employee.nickName"
-                           name="nickName"/>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label>Date Of Brth:</label>
-                    <input type="text" class="form-control"
+                    <label>Data de Nascimento:</label>
+                    <input type="date" class="form-control"
                            [(ngModel)]="employee.dateOfBirth"
                            name="dateOfBirth"/>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-3">
                 <div class="form-group">
                     <label>CPF:</label>
                     <input type="text" class="form-control"
@@ -75,35 +63,65 @@
                            name="cpf"/>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-3">
                 <div class="form-group">
-                    <label>Star Date:</label>
+                    <label>RG:</label>
                     <input type="text" class="form-control"
+                           [(ngModel)]="employee.rg"
+                           name="rg"/>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>PIS:</label>
+                    <input type="text" class="form-control"
+                           [(ngModel)]="employee.pis"
+                           name="pis"/>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>Carteira de Trablho:</label>
+                    <input type="text" class="form-control"
+                           [(ngModel)]="employee.workNumberId"
+                           name="workNumberId"/>
+                </div>
+            </div>            
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>Data Admissão:</label>
+                    <input type="date" class="form-control"
                            [(ngModel)]="employee.startDate"
                            name="startDate"/>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-3">
                 <div class="form-group">
-                    <label>Active:</label>
-                    <input type="text" class="form-control"
-                           [(ngModel)]="employee.active"
-                           name="active"/>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label>End Date:</label>
-                    <input type="text" class="form-control"
+                    <label>Data de Demissão:</label>
+                    <input typ="date" class="form-control"
                            [(ngModel)]="employee.endDate"
                            name="endDate"/>
                 </div>
-            </div>
-        </div>
-        <div class="row border">
-            <div class="col-md-5">
+            </div>   
+            <div class="col-md-3">
                 <div class="form-group">
-                    <label>Address</label>
+                    <label>Email:</label>
+                    <input typ="date" class="form-control"
+                           [(ngModel)]="employee.email"
+                           name="email"/>
+                </div>
+            </div>          
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <h3>Endereço</h3>
+            </div>            
+        </div>   
+        <div class="row">         
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Logradouro                        
+                    </label>
                     <input type="text" class="form-control"
                            [(ngModel)]="employee.address.street"
                            name="street"/>
@@ -111,44 +129,93 @@
             </div>                 
             <div class="col-md-1">
                 <div class="form-group">
-                    <label>Number</label>
+                    <label>Número</label>
                     <input type="text" class="form-control"
                            [(ngModel)]="employee.address.number"
                            name="number"/>
                 </div>
-            </div>              
+            </div>    
             <div class="col-md-2">
                 <div class="form-group">
-                    <label>Complement</label>
+                    <label>Complemento</label>
                     <input type="text" class="form-control"
                            [(ngModel)]="employee.address.complement"
                            name="complement"/>
                 </div>
             </div>              
-            <div class="col-md-2">
+            <div class="col-md-1">
                 <div class="form-group">
-                    <label>State</label>
+                    <label>Estado</label>
                     <select id="inputEstado" class="form-control" [(ngModel)]="employee.address.state" name="state">
-                        <option selected>Escolher...</option>
-                        <option>...</option>
+                        <option *ngFor="let estado of estados" value="{{ estado.nome }}">{{ estado.nome }}</option>
                     </select>                                              
                 </div>
             </div>              
             <div class="col-md-2">
                 <div class="form-group">
-                    <label>City</label>
+                    <label>Cidade</label>
                     <select id="inputEstado" class="form-control" [(ngModel)]="employee.address.city" name="city">
-                        <option selected>Escolher...</option>
-                        <option>...</option>
+                        <option>Colombo</option>
+                        <option>Curitiba</option>
+                        <option>São José dos Pinhais</option>
+                        <option>Pinhais</option>                        
+                        <option>Piraquara</option>
                     </select>                                              
                     
                 </div>
-            </div>                        
+            </div>   
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>CEP</label>
+                    <input type="text" class="form-control"
+                           [(ngModel)]="employee.address.complement"
+                           name="complement"/>
+                </div>
+            </div>                      
         </div>
-
         <div class="row">
+            <div class="col-md-3">
+                <h3>Dados Bancários</h3>
+            </div>            
+        </div>   
+        <div class="row">         
             <div class="col-md-5">
-                <button type="submit" class="btn btn-success ml-1" >
+                <div class="form-group">
+                    <label>Banco</label>
+                    <input type="text" class="form-control"
+                           [(ngModel)]="employee.bankDetail.bank"
+                           name="bank"/>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="form-group">
+                    <label>Tipo de Conta</label>
+                    <input type="text" class="form-control"
+                           [(ngModel)]="employee.bankDetail.accountType"
+                           name="bankAccountType"/>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="form-group">
+                    <label>Agência</label>
+                    <input type="text" class="form-control"
+                           [(ngModel)]="employee.bankDetail.agency"
+                           name="bankAgency"/>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="form-group">
+                    <label>Conta</label>
+                    <input type="text" class="form-control"
+                           [(ngModel)]="employee.bankDetail.accountNumber"
+                           name="bankAccountNumber"/>
+                </div>
+            </div>
+        </div>
+    
+        <div class="row">
+            <div class="col-md-9">
+                <button type="submit" class="btn btn-success ml-1" *ngIf="!employee.id">
                     <i class="fa fa-save"></i> Save
                 </button>
                 <button type="submit" class="btn btn-primary ml-1" *ngIf="employee.id">
